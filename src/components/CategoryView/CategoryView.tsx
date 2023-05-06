@@ -1,6 +1,6 @@
-import { CategoryModel } from "../interfaces/CategoryModel";
+import { CategoryModel } from "../../interfaces/CategoryModel";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styled from 'styled-components';
+import { DeleteButton, AddButton } from "./CategoryView.styles";
 
 interface CategoryProp {
     data : CategoryModel[],
@@ -8,27 +8,6 @@ interface CategoryProp {
     handleAdd: (returnedId : string) => void,
     valueChanged: (id : string, value: string) => void
 }
-
-const DeleteButton = styled.button`
-    font-size: 1em;
-    margin: 1em;
-    margin-left:0em;
-    padding: 0.25em 1em;
-    border: 2px solid tomato;
-    border-radius: 3px;
-    background-color: white;
-    color: tomato;
-`;
-
-const AddButton = styled.button`
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
-    border: 2px solid mediumseagreen;
-    border-radius: 3px;
-    background-color: white;
-    color: mediumseagreen;
-`;
 
 function CategoryView({data, handleDelete, handleAdd, valueChanged}: CategoryProp){
 
