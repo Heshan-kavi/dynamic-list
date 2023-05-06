@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import CategoryView from "../components/CategoryView/CategoryView";
 import { CategoriesData } from "../data/CategoriesData";
 import { CategoryModel } from "../interfaces/CategoryModel";
@@ -7,17 +7,17 @@ function SecondaryPage (){
 
     const [definedCategories, setDefinedCategories] = useState<CategoryModel[]>(CategoriesData);
 
-    const deleteElements = (data: CategoryModel[],  id : string) => {
+    const deleteElement = useCallback((data: CategoryModel[],  id : string) => {
         data.forEach((singleCategory, index) => {
             if(singleCategory.id === id){
                 data.splice(index,1);
             }else if(singleCategory.children.length){
-                deleteElements(singleCategory.children,id);
+                deleteElement(singleCategory.children,id);
             }
         })
-    }
+    }, [])
 
-    const addElement = (data: CategoryModel[],  id : string) => {
+    const addElement = useCallback((data: CategoryModel[],  id : string) => {
         data.forEach((singleCategory) => {
             if(singleCategory.id === id){
                 const newCategoryId = singleCategory.id + '.' + (singleCategory.children.length + 1);
@@ -26,9 +26,9 @@ function SecondaryPage (){
                 addElement(singleCategory.children,id);
             }
         })
-    }
+    },[])
 
-    const ChangeElement = (data: CategoryModel[],  id : string, value: string) => {
+    const ChangeElement = useCallback((data: CategoryModel[],  id : string, value: string) => {
         data.forEach((singleCategory) => {
             if(singleCategory.id === id){
                 singleCategory.value = value;
@@ -36,25 +36,25 @@ function SecondaryPage (){
                 ChangeElement(singleCategory.children,id, value);
             }
         })
-    }
+    },[])
 
-    const handleDelete = (returnedId : string) => {
+    const handleDelete = useCallback((returnedId : string) => {
         const copyOfDefinedCategories = [...definedCategories];
-        deleteElements(copyOfDefinedCategories,returnedId);
+        deleteElement(copyOfDefinedCategories,returnedId);
         setDefinedCategories(copyOfDefinedCategories);
-    }
+    },[definedCategories, deleteElement])
 
-    const handleAdd = (returnedId : string) => {
+    const handleAdd = useCallback((returnedId : string) => {
         const copyOfDefinedCategories = [...definedCategories];
         addElement(copyOfDefinedCategories,returnedId);
         setDefinedCategories(copyOfDefinedCategories);
-    }
+    },[definedCategories, addElement])
 
-    const valueChanged = (id : string, value: string) => {
+    const valueChanged = useCallback((id : string, value: string) => {
         const copyOfDefinedCategories = [...definedCategories];
         ChangeElement(copyOfDefinedCategories,id, value);
         setDefinedCategories(copyOfDefinedCategories);
-    }
+    },[definedCategories, ChangeElement])
 
     return <div>
     <CategoryView data={definedCategories} handleDelete={handleDelete} handleAdd={handleAdd} valueChanged={valueChanged}/>
