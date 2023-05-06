@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CategoryView from "../components/CategoryView";
+import CategoryView from "../components/CategoryView/CategoryView";
 import { CategoriesData } from "../data/CategoriesData";
 import { CategoryModel } from "../interfaces/CategoryModel";
 
