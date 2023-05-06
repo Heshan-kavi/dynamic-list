@@ -1,6 +1,7 @@
 import { CategoryModel } from "../../interfaces/CategoryModel";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DeleteButton, AddButton } from "./CategoryView.styles";
+import { memo } from "react";
 
 interface CategoryProp {
     data : CategoryModel[],
@@ -25,4 +26,4 @@ function CategoryView({data, handleDelete, handleAdd, valueChanged}: CategoryPro
     </div>
 }
 
-export default CategoryView;
+export default memo(CategoryView);
