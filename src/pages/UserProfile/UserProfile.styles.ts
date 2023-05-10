@@ -15,3 +15,10 @@ export const PrimaryButton = styled.button`
     color: palevioletred;
     border: 2px solid palevioletred;
 `
+
+export const GridDiv = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    padding: 10px;
+    gap: 10px;
+`
