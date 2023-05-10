@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { ColumnModel } from "../interfaces/TableModal"
-import { TableOptions } from "../pages/ThirdPage"
+import { TableOptions } from "../pages/ThirdPage/ThirdPage"
 
 interface Props<DATA>{
     data: DATA[]
