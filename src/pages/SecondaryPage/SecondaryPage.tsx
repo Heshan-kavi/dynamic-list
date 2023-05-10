@@ -1,11 +1,14 @@
 import { useCallback, useState } from "react";
-import CategoryView from "../components/CategoryView/CategoryView";
-import { CategoriesData } from "../data/CategoriesData";
-import { CategoryModel } from "../interfaces/CategoryModel";
+import { useNavigate } from "react-router-dom";
+import CategoryView from "../../components/CategoryView/CategoryView";
+import { CategoriesData } from "../../data/CategoriesData";
+import { CategoryModel } from "../../interfaces/CategoryModel";
+import { PrimaryButton } from "./SecondaryPage.styles";
 
 function SecondaryPage (){
 
     const [definedCategories, setDefinedCategories] = useState<CategoryModel[]>(CategoriesData);
+    let navigate = useNavigate()
 
     const deleteElement = useCallback((data: CategoryModel[],  id : string) => {
         data.forEach((singleCategory, index) => {
@@ -57,6 +60,9 @@ function SecondaryPage (){
     },[definedCategories, ChangeElement])
 
     return <div>
+    <PrimaryButton onClick={() => navigate("/third-page")}>Go To Third Page</PrimaryButton>
+    <PrimaryButton onClick={() => navigate("/secondary-page/user-profile")}>Go To User Profile Page</PrimaryButton>
+    <PrimaryButton onClick={() => navigate("/secondary-page/password")}>Go To Password Page</PrimaryButton>
     <CategoryView data={definedCategories} handleDelete={handleDelete} handleAdd={handleAdd} valueChanged={valueChanged}/>
     </div>
 }
