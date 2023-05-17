@@ -12,12 +12,12 @@ export const appSlice = createSlice({
     name: 'appSlice',
     initialState: initialState,
     reducers:{
-        addCounter: (state: AppState, action: PayloadAction<string>) => {
+        addName: (state: AppState, action: PayloadAction<string>) => {
             state.name = action.payload;
         }
     }
 })
 
-export const {addCounter} = appSlice.actions;
+export const {addName} = appSlice.actions;
 
 export default appSlice.reducer; 
