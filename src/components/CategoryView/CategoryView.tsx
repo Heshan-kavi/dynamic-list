@@ -7,10 +7,11 @@ interface CategoryProp {
     data : CategoryModel[],
     handleDelete: (returnedId : string) => void,
     handleAdd: (returnedId : string) => void,
+    handleUpdate: (returnedId : string, value: string) => void,
     valueChanged: (id : string, value: string) => void
 }
 
-function CategoryView({data, handleDelete, handleAdd, valueChanged}: CategoryProp){
+function CategoryView({data, handleDelete, handleUpdate, handleAdd, valueChanged}: CategoryProp){
 
     return <div>
         {
@@ -18,9 +19,10 @@ function CategoryView({data, handleDelete, handleAdd, valueChanged}: CategoryPro
                 <li>
                     <input style={{borderStyle:'dashed'}} value={item.value} onChange={(event) => {valueChanged(item.id, event.target.value)}}/>
                     <AddButton onClick={() => {handleAdd(item.id)}}>Add</AddButton>
+                    <DeleteButton onClick={() => {handleUpdate(item.id, item.value)}}>Update</DeleteButton>
                     <DeleteButton onClick={() => {handleDelete(item.id)}}>Delete</DeleteButton>
                 </li>
-                <div style={{paddingLeft:30}}><CategoryView data={item.children} handleDelete={handleDelete} handleAdd={handleAdd} valueChanged={valueChanged}/></div>
+                <div style={{paddingLeft:30}}><CategoryView data={item.children} handleDelete={handleDelete} handleUpdate={handleUpdate} handleAdd={handleAdd} valueChanged={valueChanged}/></div>
             </div>)
         }
     </div>
