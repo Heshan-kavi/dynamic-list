@@ -31,6 +31,16 @@ function SecondaryPage (){
         })
     },[])
 
+    const updateElement = useCallback((data: CategoryModel[], id: string, value : string) => {
+        data.forEach((singleCategory) => {
+            if(singleCategory.id === id){
+                singleCategory.value = value
+            }else{
+                updateElement(singleCategory.children,id,value);
+            }
+        })
+    },[])
+
     const ChangeElement = useCallback((data: CategoryModel[],  id : string, value: string) => {
         data.forEach((singleCategory) => {
             if(singleCategory.id === id){
@@ -53,6 +63,12 @@ function SecondaryPage (){
         setDefinedCategories(copyOfDefinedCategories);
     },[definedCategories, addElement])
 
+    const handleUpdate = useCallback((returnedId : string, value : string) => {
+        const copyOfDefinedCategories = [...definedCategories];
+        updateElement(copyOfDefinedCategories,returnedId,value);
+        setDefinedCategories(copyOfDefinedCategories);
+    },[definedCategories, updateElement])
+
     const valueChanged = useCallback((id : string, value: string) => {
         const copyOfDefinedCategories = [...definedCategories];
         ChangeElement(copyOfDefinedCategories,id, value);
@@ -63,7 +79,7 @@ function SecondaryPage (){
     <PrimaryButton onClick={() => navigate("/third-page")}>Go To Third Page</PrimaryButton>
     <PrimaryButton onClick={() => navigate("/secondary-page/user-profile")}>Go To User Profile Page</PrimaryButton>
     <PrimaryButton onClick={() => navigate("/secondary-page/password")}>Go To Password Page</PrimaryButton>
-    <CategoryView data={definedCategories} handleDelete={handleDelete} handleAdd={handleAdd} valueChanged={valueChanged}/>
+    <CategoryView data={definedCategories} handleDelete={handleDelete} handleUpdate={handleUpdate} handleAdd={handleAdd} valueChanged={valueChanged}/>
     </div>
 }
 
