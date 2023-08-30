@@ -32,6 +32,12 @@ export const DeleteButton = styled(PrimaryButton)`
     border: 2px solid tomato;
 `;
 
+export const UpdateButton = styled(PrimaryButton)`
+    margin-left:0em;
+    color: darkorange; 
+    border: 2px solid darkorange;
+`;
+
 export const AddButton = styled(PrimaryButton)`
     color: mediumseagreen;
     border: 2px solid mediumseagreen;
