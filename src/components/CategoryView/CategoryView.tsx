@@ -1,6 +1,6 @@
 import { CategoryModel } from "../../interfaces/CategoryModel";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DeleteButton, AddButton } from "./CategoryView.styles";
+import { DeleteButton, AddButton, UpdateButton } from "./CategoryView.styles";
 import { memo } from "react";
 
 interface CategoryProp {
@@ -19,7 +19,7 @@ function CategoryView({data, handleDelete, handleUpdate, handleAdd, valueChanged
                 <li>
                     <input style={{borderStyle:'dashed'}} value={item.value} onChange={(event) => {valueChanged(item.id, event.target.value)}}/>
                     <AddButton onClick={() => {handleAdd(item.id)}}>Add</AddButton>
-                    <DeleteButton onClick={() => {handleUpdate(item.id, item.value)}}>Update</DeleteButton>
+                    <UpdateButton onClick={() => {handleUpdate(item.id, item.value)}}>Update</UpdateButton>
                     <DeleteButton onClick={() => {handleDelete(item.id)}}>Delete</DeleteButton>
                 </li>
                 <div style={{paddingLeft:30}}><CategoryView data={item.children} handleDelete={handleDelete} handleUpdate={handleUpdate} handleAdd={handleAdd} valueChanged={valueChanged}/></div>
