@@ -76,6 +76,7 @@ function SecondaryPage (){
     },[definedCategories, ChangeElement])
 
     return <div>
+    <p>this is the value of the element : </p><p id="storedValue"></p>
     <PrimaryButton onClick={() => navigate("/third-page")}>Go To Third Page</PrimaryButton>
     <PrimaryButton onClick={() => navigate("/secondary-page/user-profile")}>Go To User Profile Page</PrimaryButton>
     <PrimaryButton onClick={() => navigate("/secondary-page/password")}>Go To Password Page</PrimaryButton>
