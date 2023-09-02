@@ -1,14 +1,18 @@
 import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CategoryView from "../../components/CategoryView/CategoryView";
 import { CategoriesData } from "../../data/CategoriesData";
 import { CategoryModel } from "../../interfaces/CategoryModel";
 import { PrimaryButton } from "./SecondaryPage.styles";
+import { addNumber } from "../../store/AppSlice";
 
 function SecondaryPage (){
 
     const [definedCategories, setDefinedCategories] = useState<CategoryModel[]>(CategoriesData);
     let navigate = useNavigate()
+    const dispatch = useDispatch();
+    const [incrementedAmount, setIncrementAmount] = useState('');
 
     const deleteElement = useCallback((data: CategoryModel[],  id : string) => {
         data.forEach((singleCategory, index) => {
@@ -34,6 +38,8 @@ function SecondaryPage (){
     const updateElement = useCallback((data: CategoryModel[], id: string, value : string) => {
         data.forEach((singleCategory) => {
             if(singleCategory.id === id){
+                dispatch(addNumber(Number(incrementedAmount)));
+                setIncrementAmount(value);
                 singleCategory.value = value
             }else{
                 updateElement(singleCategory.children,id,value);
@@ -76,7 +82,8 @@ function SecondaryPage (){
     },[definedCategories, ChangeElement])
 
     return <div>
-    <p>this is the value of the element : </p><p id="storedValue"></p>
+    <p>this is the value of the element : </p>
+    <input value={incrementedAmount}/>
     <PrimaryButton onClick={() => navigate("/third-page")}>Go To Third Page</PrimaryButton>
     <PrimaryButton onClick={() => navigate("/secondary-page/user-profile")}>Go To User Profile Page</PrimaryButton>
     <PrimaryButton onClick={() => navigate("/secondary-page/password")}>Go To Password Page</PrimaryButton>
