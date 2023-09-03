@@ -6,7 +6,7 @@ import { memo } from "react";
 interface CategoryProp {
     data : CategoryModel[],
     handleDelete: (returnedId : string) => void,
-    handleAdd: (returnedId : string) => void,
+    handleAdd: (returnedId : string, value: string) => void,
     handleUpdate: (returnedId : string, value: string) => void,
     valueChanged: (id : string, value: string) => void
 }
@@ -18,7 +18,7 @@ function CategoryView({data, handleDelete, handleUpdate, handleAdd, valueChanged
             data.map((item) => <div key={item.id}>
                 <li>
                     <input style={{borderStyle:'dashed'}} value={item.value} onChange={(event) => {valueChanged(item.id, event.target.value)}}/>
-                    <AddButton onClick={() => {handleAdd(item.id)}}>Add</AddButton>
+                    <AddButton onClick={() => {handleAdd(item.id, item.value)}}>Add</AddButton>
                     <UpdateButton onClick={() => {handleUpdate(item.id, item.value)}}>Update</UpdateButton>
                     <DeleteButton onClick={() => {handleDelete(item.id)}}>Delete</DeleteButton>
                 </li>
