@@ -24,13 +24,16 @@ function SecondaryPage (){
         })
     }, [])
 
-    const addElement = useCallback((data: CategoryModel[],  id : string) => {
+    const addElement = useCallback((data: CategoryModel[],  id : string, value: string) => {
         data.forEach((singleCategory) => {
             if(singleCategory.id === id){
                 const newCategoryId = singleCategory.id + '.' + (singleCategory.children.length + 1);
+
+                dispatch(addNumber(Number(incrementedAmount)));
+                setIncrementAmount(value);
                 singleCategory.children[singleCategory.children.length] = {id:newCategoryId,children:[],value:''}
             }else{
-                addElement(singleCategory.children,id);
+                addElement(singleCategory.children,id,value);
             }
         })
     },[])
@@ -63,9 +66,9 @@ function SecondaryPage (){
         setDefinedCategories(copyOfDefinedCategories);
     },[definedCategories, deleteElement])
 
-    const handleAdd = useCallback((returnedId : string) => {
+    const handleAdd = useCallback((returnedId : string, value: string) => {
         const copyOfDefinedCategories = [...definedCategories];
-        addElement(copyOfDefinedCategories,returnedId);
+        addElement(copyOfDefinedCategories,returnedId, value);
         setDefinedCategories(copyOfDefinedCategories);
     },[definedCategories, addElement])
 
