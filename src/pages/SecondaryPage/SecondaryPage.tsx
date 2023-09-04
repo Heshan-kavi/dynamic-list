@@ -31,7 +31,7 @@ function SecondaryPage (){
 
                 dispatch(addNumber(Number(incrementedAmount)));
                 setIncrementAmount(value);
-                singleCategory.children[singleCategory.children.length] = {id:newCategoryId,children:[],value:''}
+                singleCategory.children[singleCategory.children.length] = {id:newCategoryId,children:[],value:value}
             }else{
                 addElement(singleCategory.children,id,value);
             }
