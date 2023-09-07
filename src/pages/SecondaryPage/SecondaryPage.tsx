@@ -35,7 +35,7 @@ function SecondaryPage (){
                 addElement(singleCategory.children,id,updatedValue);
             }
         })
-    },[])
+    },[dispatch])
 
     const updateElement = useCallback((data: CategoryModel[], id: string, value : string) => {
         data.forEach((singleCategory) => {
@@ -47,7 +47,7 @@ function SecondaryPage (){
                 updateElement(singleCategory.children,id,value);
             }
         })
-    },[])
+    },[dispatch])
 
     const ChangeElement = useCallback((data: CategoryModel[],  id : string, value: string) => {
         data.forEach((singleCategory) => {

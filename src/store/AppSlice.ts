@@ -19,10 +19,13 @@ export const appSlice = createSlice({
         },
         addNumber: (state: AppState, action: PayloadAction<number>) => {
             state.selectedNumber = action.payload;
+        },
+        setNumber: (state: AppState) => {
+            state.selectedNumber += 1;
         }
     }
 })
 
-export const {addName, addNumber} = appSlice.actions;
+export const {addName, addNumber, setNumber} = appSlice.actions;
 
 export default appSlice.reducer; 
