@@ -28,8 +28,7 @@ function SecondaryPage (){
         data.forEach((singleCategory) => {
             if(singleCategory.id === id){
                 const newCategoryId = singleCategory.id + '.' + (singleCategory.children.length + 1);
-
-                dispatch(addNumber(Number(incrementedAmount)));
+                dispatch(addNumber(Number(updatedValue)));
                 setIncrementAmount(updatedValue);
                 singleCategory.children[singleCategory.children.length] = {id:newCategoryId,children:[],value:updatedValue}
             }else{
@@ -41,7 +40,7 @@ function SecondaryPage (){
     const updateElement = useCallback((data: CategoryModel[], id: string, value : string) => {
         data.forEach((singleCategory) => {
             if(singleCategory.id === id){
-                dispatch(addNumber(Number(incrementedAmount)));
+                dispatch(addNumber(Number(value)));
                 setIncrementAmount(value);
                 singleCategory.value = value
             }else{
@@ -86,7 +85,7 @@ function SecondaryPage (){
 
     return <div>
     <p>this is the value of the element : </p>
-    <input value={incrementedAmount}/>
+    <input value={incrementedAmount} readOnly/>
     <PrimaryButton onClick={() => navigate("/third-page")}>Go To Third Page</PrimaryButton>
     <PrimaryButton onClick={() => navigate("/secondary-page/user-profile")}>Go To User Profile Page</PrimaryButton>
     <PrimaryButton onClick={() => navigate("/secondary-page/password")}>Go To Password Page</PrimaryButton>
