@@ -19,9 +19,9 @@ export default function Table<DATA>({data,columns, tableOptions}: Props<DATA>){
 
       setCheckedIds(dictionaryList)
 
-    }, [data])
+    }, [data, tableOptions])
 
-    console.log(checkedIds)
+    // console.log(checkedIds)
 
 
     const isAllIdsChecked = useMemo(() =>  Object.values(checkedIds).every(value => value === true), [checkedIds])
@@ -29,6 +29,7 @@ export default function Table<DATA>({data,columns, tableOptions}: Props<DATA>){
     return <>
      <table>
         <thead>
+            <tr>
             {
                 tableOptions.showCheckboxColumn && <>
                     <td><input type="checkbox" checked={isAllIdsChecked} onChange={(ev) => {
@@ -45,6 +46,7 @@ export default function Table<DATA>({data,columns, tableOptions}: Props<DATA>){
                     <td>{column.columnId}</td>
                     </>)
             }
+            </tr>
         </thead>
         <tbody>
             {
