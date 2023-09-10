@@ -10,6 +10,7 @@ function Password () {
         <PrimaryButton onClick={() => navigate("/secondary-page")}>Go To Secondary Page</PrimaryButton>
         <PrimaryButton onClick={() => navigate("/secondary-page/user-profile")}>Go To User Profile Page</PrimaryButton>
         <PasswordHeader>This is the Password page header</PasswordHeader>
+        <p>this is the content in the password page</p>
         <Outlet/>
     </div>
 }
